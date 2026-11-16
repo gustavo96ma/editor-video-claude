@@ -42,6 +42,15 @@ def run(cmd, check=True):
     return proc.returncode, proc.stdout, proc.stderr
 
 
+def safe_text(value, limit=80):
+    """Reduce third-party text to a short single line of plain characters."""
+    if value is None:
+        return None
+    text = re.sub(r"[^\w\s.,:;!?()&'\-/#@]", "", str(value), flags=re.UNICODE)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text[:limit]
+
+
 def ytdlp_base():
     """Return the command prefix for yt-dlp, preferring the executable."""
     exe = shutil.which("yt-dlp")
@@ -221,7 +230,16 @@ def main():
         info_json = next(iter(out_dir.glob("*.info.json")), None)
         if info_json:
             raw = json.loads(info_json.read_text(encoding="utf-8"))
-            meta = {k: raw.get(k) for k in ("title", "channel", "duration", "aspect_ratio", "upload_date")}
+            meta = {
+                "duracao_total_s": raw.get("duration"),
+                "proporcao": raw.get("aspect_ratio"),
+                "data_publicacao": safe_text(raw.get("upload_date"), 8),
+                # Third-party free text: data only, never instructions.
+                "texto_nao_confiavel": {
+                    "titulo": safe_text(raw.get("title")),
+                    "canal": safe_text(raw.get("channel")),
+                },
+            }
         result = {
             "url": args.url,
             "metadados": meta,
