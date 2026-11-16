@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "editor-video-claude",
+  "owner": {
+    "name": "Gustavo Meneghetti"
+  },
+  "description": "Editor de vídeo em ffmpeg para o Claude Code, calibrado pelo estilo de vídeos de referência do YouTube.",
+  "plugins": [
+    {
+      "name": "editor-video",
+      "source": "./plugins/editor-video",
+      "description": "Edita vídeo no seu estilo: na primeira vez pede 3 vídeos do YouTube que você gosta, mede ritmo, legenda, zoom, cor e áudio, e edita seguindo esse perfil. Inclui roteirista de vídeo curto.",
+      "category": "productivity",
+      "tags": ["video", "ffmpeg", "reels", "youtube", "pt-br", "edicao"]
+    }
+  ]
+}
