@@ -1,10 +1,15 @@
 {
   "name": "editor-video",
-  "version": "0.1.0",
-  "description": "Editor de vídeo em ffmpeg calibrado pelo seu estilo: perfil a partir de 3 vídeos de referência do YouTube, editor, roteirista e calibrador.",
+  "description": "Editor de vídeo em ffmpeg calibrado pelo seu estilo: perfil a partir de 3 vídeos de referência, editor, roteirista e calibrador.",
   "author": {
     "name": "Gustavo Meneghetti"
   },
   "license": "MIT",
-  "keywords": ["video", "ffmpeg", "reels", "youtube", "edicao"]
+  "keywords": [
+    "video",
+    "ffmpeg",
+    "reels",
+    "youtube",
+    "edicao"
+  ]
 }
